@@ -1,0 +1,34 @@
+{
+  "name": "elated",
+  "version": "1.0.0",
+  "description": "Hapi.js implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -r dotenv/config server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gredfearn/elated.git"
+  },
+  "keywords": [
+    "Hapi",
+    "Joi"
+  ],
+  "author": "Grant Redfearn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gredfearn/elated/issues"
+  },
+  "homepage": "https://github.com/gredfearn/elated#readme",
+  "dependencies": {
+    "blankie": "^4.0.0",
+    "dotenv": "^6.0.0",
+    "hapi": "^17.5.2",
+    "hapi-good-winston": "^2.0.1",
+    "hapi-ralphi": "^3.0.1",
+    "ralphi-client": "^3.0.1",
+    "scooter": "^5.0.0",
+    "winston": "^3.0.0"
+  }
+}

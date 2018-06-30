@@ -23,12 +23,16 @@
   "homepage": "https://github.com/gredfearn/elated#readme",
   "dependencies": {
     "blankie": "^4.0.0",
+    "continuation-local-storage": "^3.2.1",
     "dotenv": "^6.0.0",
     "hapi": "^17.5.2",
     "hapi-good-winston": "^2.0.1",
     "hapi-ralphi": "^3.0.1",
+    "pg": "^7.4.3",
     "ralphi-client": "^3.0.1",
     "scooter": "^5.0.0",
+    "sequelize": "^4.38.0",
+    "umzug": "^2.1.0",
     "winston": "^3.0.0"
   }
 }

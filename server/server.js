@@ -6,6 +6,7 @@ const Hapi = require('hapi');
 // Import Utils
 const logger = require('./utils/logger');
 const security = require('./utils/security');
+const bootstrapDB = require('../models/index');
 
 // Server instantiation
 const serverConfig = {
@@ -32,6 +33,9 @@ async function start() {
         //Plugins:
         await security.blankie(server);
         // await security.ralphi(server);
+
+        // Bootstrap DB:
+        bootstrapDB();
 
         // Start Server
         await server.start();

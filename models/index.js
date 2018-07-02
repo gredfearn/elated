@@ -4,19 +4,22 @@ const Sequelize =  require('sequelize');
 const cls =  require('continuation-local-storage');
 const Umzug =  require('umzug');
 
+// utils
 const logger = require('../server/utils/logger');
 
-const Op = Sequelize.Op;
 
+// set namespace
 const namespace = cls.createNamespace('db-transactions');
 Sequelize.useCLS(namespace);
 
-const db = {};
+// init Sequelize
+const Op = Sequelize.Op;
 const sequelize = new Sequelize(process.env.DATABASE_URL, { operatorsAliases: Op });
 sequelize.options.define.underscored = true;
 sequelize.options.logging = msg => logger.debug(msg);
 sequelize.options.freezeTableName = true;
 
+// Setup migrations and seeders
 const umzug = new Umzug({
   storage: 'sequelize',
   storageOptions: {
@@ -36,26 +39,27 @@ const umzug = new Umzug({
   },
 });
 
+// Setup DB object
+const db = {};
 const basename = 'index.js';
 const directory = './models/';
 const modelsDirectory = path.resolve(directory);
-
-fs
-  .readdirSync(modelsDirectory)
+fs.readdirSync(modelsDirectory)
   .filter(file => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
     const model = sequelize.import(path.join(modelsDirectory, file));
     db[model.name] = model;
   });
 
+// Associate Models
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
+// Auth, sync, and migrate db
 function bootstrapDB() {
-  logger.info('Connected to db')
   return sequelize.authenticate()
     .then(() => {
       logger.info('Connected to database successfully.');
@@ -85,7 +89,5 @@ function bootstrapDB() {
       process.exit();
     });
 }
-
-
 
 module.exports = bootstrapDB;

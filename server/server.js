@@ -28,7 +28,6 @@ server.route({
 
 // Start the server
 async function start() {
-
     try {
         //Plugins:
         await security.blankie(server);

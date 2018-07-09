@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "dev_user",
+    "password": "p@ssw0rd",
+    "database": "elated_dev",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
